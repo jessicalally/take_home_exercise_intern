@@ -1,0 +1,9 @@
+### Intellij ###
+.idea/
+
+### Gradle ###
+.gradle
+build/
+
+### Temporary Files ###
+*~
