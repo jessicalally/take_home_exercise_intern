@@ -152,4 +152,29 @@ public class QuoteControllerFunctionalTest {
         assertEquals(quote.getDeliveryPostcode(), "EC2A3LT");
         assertEquals(quote.getPrice(), new Long(442));
     }
+
+    @Test
+    public void testAcceptsPostcodesContainingWhitespace() throws Exception {
+        Quote quoteData = new Quote("SW1A 1AA", "EC2A 3LT", Vehicle.LARGE_VAN);
+        MvcResult result = this.mockMvc.perform(post("/quote")
+            .contentType("application/json")
+            .content(objectMapper.writeValueAsString(quoteData)))
+            .andExpect(status().isOk())
+            .andReturn();
+
+        Quote quote = objectMapper.readValue(result.getResponse().getContentAsString(), Quote.class);
+        assertEquals(quote.getPickupPostcode(), "SW1A1AA");
+        assertEquals(quote.getDeliveryPostcode(), "EC2A3LT");
+        assertEquals(quote.getPrice(), new Long(442));
+    }
+
+    @Test
+    public void testRejectsInvalidPostcode() throws Exception {
+        Quote quoteData = new Quote("ABCDEFGH", "EC2A 3LT", Vehicle.LARGE_VAN);
+        this.mockMvc.perform(post("/quote")
+            .contentType("application/json")
+            .content(objectMapper.writeValueAsString(quoteData)))
+            .andExpect(status().isBadRequest())
+            .andReturn();
+    }
 }

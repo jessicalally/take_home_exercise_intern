@@ -51,7 +51,7 @@
               const response = request.response;
               elem.innerText = `A delivery from ${response.pickupPostcode} to ${response.deliveryPostcode} using a ${response.vehicle.toLowerCase()} will cost you £${response.price}.`
           } else {
-              console.error(request.statusText);
+              elem.innerText = request.response.errors[0].defaultMessage;
           }
       }
       elem.innerText = "Please wait...";

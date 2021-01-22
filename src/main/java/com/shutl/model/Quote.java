@@ -1,8 +1,14 @@
 package com.shutl.model;
 
+import javax.validation.constraints.Pattern;
+
 public class Quote {
+    @Pattern(regexp="^[a-zA-Z]{1,2}\\d[a-zA-Z\\d]?\\s*\\d[a-zA-Z]{2}$",message="Enter a valid UK Postcode")
     private String pickupPostcode;
+
+    @Pattern(regexp="^[a-zA-Z]{1,2}\\d[a-zA-Z\\d]?\\s*\\d[a-zA-Z]{2}$",message="Enter a valid UK Postcode")
     private String deliveryPostcode;
+
     private Vehicle vehicle;
     private Long price;
 
