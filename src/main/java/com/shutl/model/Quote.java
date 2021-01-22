@@ -9,15 +9,13 @@ public class Quote {
     public Quote() {}
 
     public Quote(String pickupPostcode, String deliveryPostcode, Vehicle vehicle) {
-        this.pickupPostcode = pickupPostcode;
-        this.deliveryPostcode = deliveryPostcode;
+        this.pickupPostcode = pickupPostcode.replaceAll("\\s", "");
+        this.deliveryPostcode = deliveryPostcode.replaceAll("\\s", "");
         this.vehicle = vehicle;
     }
 
     public Quote(String pickupPostcode, String deliveryPostcode, Vehicle vehicle, Long price) {
-        this.pickupPostcode = pickupPostcode;
-        this.deliveryPostcode = deliveryPostcode;
-        this.vehicle = vehicle;
+        this(pickupPostcode, deliveryPostcode, vehicle);
         this.price = price;
     }
 
@@ -26,7 +24,7 @@ public class Quote {
     }
 
     public void setPickupPostcode(String pickupPostcode) {
-        this.pickupPostcode = pickupPostcode;
+        this.pickupPostcode = pickupPostcode.replaceAll("\\s", "");
     }
 
     public String getDeliveryPostcode() {
@@ -34,7 +32,7 @@ public class Quote {
     }
 
     public void setDeliveryPostcode(String deliveryPostcode) {
-        this.deliveryPostcode = deliveryPostcode;
+        this.deliveryPostcode = deliveryPostcode.replaceAll("\\s", "");
     }
 
     public Long getPrice() {
@@ -47,5 +45,9 @@ public class Quote {
 
     public Vehicle getVehicle() {
         return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }
