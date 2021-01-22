@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class QuoteController {
     @RequestMapping(value = "/quote", method = POST)
     public @ResponseBody Quote quote(@Valid @RequestBody Quote quote) {
-        return new Quote(quote.getPickupPostcode(), quote.getDeliveryPostcode(), quote.getVehicle(), calculatePrice(quote));
+        quote.setPrice(calculatePrice(quote));
+        return quote;
     }
 
     private Long calculatePrice(Quote quote) {
