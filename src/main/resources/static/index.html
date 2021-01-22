@@ -9,18 +9,18 @@
 
   <div>
     <label for="pickupPostcode">Pickup postcode:</label>
-    <input name="pickupPostcode" id="pickupPostcode">
+    <input name="pickupPostcode" id="pickupPostcode" required pattern="[a-zA-Z]{1,2}\d[a-zA-Z\d]?\s*\d[a-zA-Z]{2}" title="Enter a valid UK Postcode">
   </div>
 
   <div>
     <label for="deliveryPostcode">Delivery postcode:</label>
-    <input name="deliveryPostcode" id="deliveryPostcode">
+    <input name="deliveryPostcode" id="deliveryPostcode" required pattern="[a-zA-Z]{1,2}\d[a-zA-Z\d]?\s*\d[a-zA-Z]{2}" title="Enter a valid UK Postcode">
   </div>
 
   <div>
     <label for="vehicle">Vehicle:</label>
-    <select id = "vehicle" name = "vehicle">
-      <option value = "NONE">None</option>
+    <select id = "vehicle" name = "vehicle" required>
+      <option disabled selected value> -- select a vehicle -- </option>
       <option value = "BICYCLE">Bicycle</option>
       <option value = "MOTORBIKE">Motorbike</option>
       <option value = "PARCEL_CAR">Parcel Car</option>
